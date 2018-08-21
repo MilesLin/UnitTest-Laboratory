@@ -81,6 +81,27 @@ namespace Lab_MVC.Tests
             expected.ToExpectedObject().ShouldMatch(actual);
         }
 
+        [Fact]
+        public void ExpectedObjects_ListObj_MatchOrder_Demo()
+        {
+            //arrange
+            var expected = new[]
+            {
+                new Phone { Brand = Brand.Sony, Price = 299m, Series = "Xperia" },
+                new Phone { Brand = Brand.Apple, Price = 399m, Series = "X" },
+                new Phone { Brand = Brand.Asus, Price = 100m, Series = "ZenPhone" }
+            };
+
+            var sut = new Store();
+
+            //act
+            var actual = sut.GetAllPhones();
+
+            //assert
+            // 會比較順序
+            expected.ToExpectedObject(x => x.UseOrdinalComparison()).ShouldMatch(actual);
+        }
+
         #endregion ExpectedObjects
 
         #region AssertTrueAndFalse
