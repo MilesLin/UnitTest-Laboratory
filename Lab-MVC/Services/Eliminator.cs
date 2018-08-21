@@ -32,7 +32,7 @@ namespace Lab_MVC.Services
             }
             else
             {
-                return default(T);
+                throw new ArgumentNullException("不可傳入Null物件");
             }
         }
     }

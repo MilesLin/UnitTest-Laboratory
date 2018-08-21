@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace Lab_MVC.Services.Tests
 {
@@ -30,6 +31,24 @@ namespace Lab_MVC.Services.Tests
             Assert.Equal(expected.ContainerId, actual.ContainerId);
             Assert.Equal(expected.ContainerName, actual.ContainerName);
             Assert.Equal(expected.ContainerType, actual.ContainerType);
+        }
+
+        [Fact()]
+        public void EliminateSpace_Null_Object_Test()
+        {
+            // Arrange
+            Container obj = null;
+
+            var sut = new Eliminator();
+
+            // Act
+            // Assert
+            var ex = Assert.Throws<ArgumentNullException>(() =>
+            {
+                var actual = sut.EliminateSpace(obj);
+            });
+
+            Assert.Contains("Null物件", ex.Message);
         }
 
         public class Container
