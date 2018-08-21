@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ExpectedObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Lab_MVC.Tests
@@ -38,6 +41,47 @@ namespace Lab_MVC.Tests
         }
 
         #endregion AssertEqual
+
+        #region ExpectedObjects
+
+        [Fact]
+        public void ExpectedObjects_SingleObj_Demo()
+        {
+            //arrange
+            var expected = new { Brand = Brand.Apple, Price = 399m };
+
+            var sut = new Store();
+
+            //act
+            var actual = sut.GetTheMostExpensivePhone();
+
+            //assert
+            // 只會驗證 expected 有的 properties (方法不要用錯了，是 ShouldMatch 不是 ShouldEqual )
+            expected.ToExpectedObject().ShouldMatch(actual);
+        }
+
+        [Fact]
+        public void ExpectedObjects_ListObj_Demo()
+        {
+            //arrange
+            var expected = new[]
+            {
+                new Phone { Brand = Brand.Apple, Price = 399m, Series = "X" },
+                new Phone { Brand = Brand.Sony, Price = 299m, Series = "Xperia" },
+                new Phone { Brand = Brand.Asus, Price = 100m, Series = "ZenPhone" }
+            };
+
+            var sut = new Store();
+
+            //act
+            var actual = sut.GetAllPhones();
+
+            //assert
+            // 並不會比較順序
+            expected.ToExpectedObject().ShouldMatch(actual);
+        }
+
+        #endregion ExpectedObjects
 
         #region AssertTrueAndFalse
 
@@ -123,7 +167,34 @@ namespace Lab_MVC.Tests
             //Assert.NotEmpty(ex.Message);
         }
 
-        #endregion AssertThrowException        
+        #endregion AssertThrowException
+    }
+
+    #region Sample Code
+
+    public class Store
+    {
+        private List<Phone> _phones = new List<Phone>()
+        {
+            new Phone { Brand = Brand.Apple, Price = 399m, Series = "X" },
+            new Phone { Brand = Brand.Asus, Price = 100m, Series = "ZenPhone" },
+            new Phone { Brand = Brand.Sony, Price = 299m, Series = "Xperia" }
+        };
+
+        public Phone GetTheMostExpensivePhone()
+        {
+            return _phones.First(x => x.Brand == Brand.Apple);
+        }
+
+        public Phone GetTheCheapestPhone()
+        {
+            return _phones.First(x => x.Brand == Brand.Asus);
+        }
+
+        public List<Phone> GetAllPhones()
+        {
+            return _phones;
+        }
     }
 
     public class Calculator
@@ -149,4 +220,6 @@ namespace Lab_MVC.Tests
         Sony,
         Asus
     }
+
+    #endregion Sample Code
 }
