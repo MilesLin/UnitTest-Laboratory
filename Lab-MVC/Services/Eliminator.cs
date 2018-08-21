@@ -12,7 +12,7 @@ namespace Lab_MVC.Services
         /// 消除空白
         /// </summary>
         /// <param name="obj">物件</param>
-        public void EliminateSpace(object obj)
+        public T EliminateSpace<T>(T obj)
         {
             if (obj != null)
             {
@@ -28,6 +28,11 @@ namespace Lab_MVC.Services
                         }
                     }
                 }
+                return obj;
+            }
+            else
+            {
+                return default(T);
             }
         }
     }
