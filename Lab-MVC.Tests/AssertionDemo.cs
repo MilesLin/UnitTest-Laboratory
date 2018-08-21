@@ -189,6 +189,26 @@ namespace Lab_MVC.Tests
         }
 
         #endregion AssertThrowException
+
+        #region AssertIsType
+        [Fact]
+        public void AssertIsType_Demo()
+        {
+            var p = new Phone();
+
+            Assert.IsType<Phone>(p);
+            //Assert.IsNotType<Phone>(p);
+        }
+
+        [Fact]
+        public void AssertIsAssignalbeFrom_Demo()
+        {
+            var iPhone = new IPhone();
+
+            // 驗證 IPhone 是 Phone 的子類別
+            Assert.IsAssignableFrom<Phone>(iPhone);
+        } 
+        #endregion
     }
 
     #region Sample Code
@@ -233,6 +253,11 @@ namespace Lab_MVC.Tests
         public string Series { get; set; }
 
         public decimal Price { get; set; }
+    }
+
+    public class IPhone : Phone
+    {
+        public int Resolution { get; set; }
     }
 
     public enum Brand
