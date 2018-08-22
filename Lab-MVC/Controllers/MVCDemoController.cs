@@ -27,5 +27,12 @@ namespace Lab_MVC.Controllers
 
             return View(result);
         }
+
+        public ActionResult GetPartialView(int trainId)
+        {
+            var result = _trains.First(x => x.TrainId == trainId);
+
+            return PartialView(result);
+        }
     }
 }

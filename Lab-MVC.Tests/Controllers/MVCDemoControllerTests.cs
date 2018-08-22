@@ -35,5 +35,33 @@ namespace Lab_MVC.Controllers.Tests
             //assert
             expected.ToExpectedObject().ShouldMatch(result);
         }
+
+        [Fact()]
+        public void GetPartialViewTest()
+        {
+            //arrange
+            int trainId = 1;
+            var expected = new
+            {
+                TrainId = 1,
+                TrainName = "XY-3443",
+                Destination = "Torrance",
+                DepartureTime = new DateTime(2018, 10, 1)
+            };
+
+            var sut = new MVCDemoController();
+
+            //act
+            var actual = sut.GetPartialView(trainId) as PartialViewResult;
+            var result = actual.Model as Train;
+            
+            // 其他可測試項目
+            //actual.TempData["Key"]
+            //actual.ViewData["Key"]
+            //actual.ViewName
+
+            //assert
+            expected.ToExpectedObject().ShouldMatch(result);
+        }
     }
 }
