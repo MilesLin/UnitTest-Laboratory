@@ -49,9 +49,32 @@ namespace Lab_MVC.Controllers
             return Json(new { Name = "Miles" });
         }
 
-        public ActionResult GetJavaScriptResult()
+        public ActionResult GetJavaScript()
         {
             return JavaScript("alert('hi')");
+        }
+
+        public ActionResult GetRedirect()
+        {
+            return Redirect("http://google.com");
+            //return RedirectPermanent("http://google.com");
+        }
+
+        public ActionResult GetRedirectToRoute()
+        {
+            return RedirectToRoute(new { action = "Index", controller = "Home" });
+            //return RedirectToRoutePermanent(new { action = "Index", controller = "Home" });
+        }
+
+        public ActionResult GetRedirectToAction()
+        {
+            return RedirectToAction("Index", "Home", new { id = 10 });
+            //return RedirectToActionPermanent("Index", "Home", new { id = 10 });
+        }
+
+        public ActionResult GetHttpNotFound()
+        {
+            return HttpNotFound("Not Found");
         }
     }
 }

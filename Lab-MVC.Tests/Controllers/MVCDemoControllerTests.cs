@@ -150,11 +150,63 @@ namespace Lab_MVC.Controllers.Tests
             var sut = new MVCDemoController();
 
             // Act
-            var actual = sut.GetJavaScriptResult() as JavaScriptResult;
+            var actual = sut.GetJavaScript() as JavaScriptResult;
 
             // 只有 actual.Script 可以測試
             Assert.Equal(expected, actual.Script);
         }
 
+        [Fact()]
+        public void GetRedirectTest()
+        {
+            // Arrange
+            var sut = new MVCDemoController();
+
+            // Act
+            var actual = sut.GetRedirect() as RedirectResult;
+            var a = actual.Permanent;
+            var b = actual.Url;
+        }
+
+        [Fact()]
+        public void GetRedirectToRouteTest()
+        {
+            // Arrange
+            var sut = new MVCDemoController();
+
+            // Act
+            var actual = sut.GetRedirectToRoute() as RedirectToRouteResult;
+            var a = actual.Permanent;
+            var b = actual.RouteName;
+            var c = actual.RouteValues["action"];
+            var d = actual.RouteValues["controller"];
+        }
+
+        [Fact()]
+        public void GetRedirectToActionTest()
+        {
+            // Arrange
+            var sut = new MVCDemoController();
+
+            // Act
+            var actual = sut.GetRedirectToAction() as RedirectToRouteResult;
+            var a = actual.Permanent;
+            var b = actual.RouteName;
+            var c = actual.RouteValues["action"];
+            var d = actual.RouteValues["controller"];
+            var e = actual.RouteValues["id"];
+        }
+
+        [Fact()]
+        public void GetHttpNotFoundTest()
+        {
+            // Arrange
+            var sut = new MVCDemoController();
+
+            // Act
+            var actual = sut.GetHttpNotFound() as HttpNotFoundResult;
+            var a = actual.StatusCode;
+            var b = actual.StatusDescription;
+        }
     }
 }
