@@ -19,8 +19,7 @@ namespace Lab_MVC.Controllers
                 new Train { TrainId = 3, TrainName = "ZX-9431", Destination = "Santa", DepartureTime = new DateTime(2018,10,7) }
             };
         }
-
-        // GET: MVCDemo
+        
         public ActionResult GetView(int trainId)
         {
             var result = _trains.First(x => x.TrainId == trainId);
@@ -34,5 +33,16 @@ namespace Lab_MVC.Controllers
 
             return PartialView(result);
         }
+
+        public ActionResult GetContent()
+        {            
+            return Content("Hello", "text/csv");
+        }
+
+        public ActionResult GetFile()
+        {
+            return File(new byte[] { }, "text/csv", "abc.xls");
+        }
+
     }
 }
