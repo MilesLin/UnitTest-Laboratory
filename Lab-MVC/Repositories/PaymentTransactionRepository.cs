@@ -1,4 +1,5 @@
 ﻿using Lab_MVC.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Lab_MVC.Repositories
@@ -12,13 +13,12 @@ namespace Lab_MVC.Repositories
             _db = new WebPayment();
         }
 
-        public PaymentTransaction GetLastPaymentTransactions(string lastName, string theLastFourDigitalOfCreditCard)
+        public IEnumerable<PaymentTransaction> GetPaymentTransactions(string lastName, string theLastFourDigitalOfCreditCard)
         {
             var paymentTransactions = _db.PaymentTransactions
-                .Where(x => x.LastName == lastName && x.LastFourNumberOfCard == theLastFourDigitalOfCreditCard)
-                .OrderByDescending(x => x.EntryDateTime);
+                .Where(x => x.LastName == lastName && x.LastFourNumberOfCard == theLastFourDigitalOfCreditCard);
 
-            return paymentTransactions.FirstOrDefault() ?? default(PaymentTransaction);
+            return paymentTransactions;
         }
     }
 }
