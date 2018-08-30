@@ -1,10 +1,11 @@
-﻿using Lab_MVC.Models;
+﻿using Lab_MVC.Interfaces.Repositories;
+using Lab_MVC.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Lab_MVC.Repositories
 {
-    public class PaymentTransactionRepository
+    public class PaymentTransactionRepository : IPaymentTransactionRepository
     {
         private WebPayment _db;
 

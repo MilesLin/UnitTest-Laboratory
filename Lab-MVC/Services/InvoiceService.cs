@@ -1,17 +1,22 @@
-﻿using Lab_MVC.Repositories;
+﻿using Lab_MVC.Interfaces.Repositories;
+using Lab_MVC.Interfaces.Services;
+using Lab_MVC.Repositories;
 using System.Linq;
 
 namespace Lab_MVC.Services
 {
     public class InvoiceService
     {
-        private PaymentTransactionRepository _paymentTransactionRepository;
-        private PayPalService _payPalService;
+        private IPaymentTransactionRepository _paymentTransactionRepository;
+        private IPayPalService _payPalService;
 
-        public InvoiceService()
+        public InvoiceService(
+            IPaymentTransactionRepository paymentTransactionRepository,
+            IPayPalService payPalService
+            )
         {
-            _paymentTransactionRepository = new PaymentTransactionRepository();
-            _payPalService = new PayPalService();
+            _paymentTransactionRepository = paymentTransactionRepository;
+            _payPalService = payPalService;
         }
 
         public bool SendInvoice(string lastName, string theLastFourDigitalOfCreditCard)

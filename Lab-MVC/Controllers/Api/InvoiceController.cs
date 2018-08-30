@@ -1,4 +1,5 @@
-﻿using Lab_MVC.Services;
+﻿using Lab_MVC.Repositories;
+using Lab_MVC.Services;
 using System.Web.Http;
 
 namespace Lab_MVC.Controllers.Api
@@ -9,7 +10,7 @@ namespace Lab_MVC.Controllers.Api
 
         public InvoiceController()
         {
-            _invoiceService = new InvoiceService();
+            _invoiceService = new InvoiceService(new PaymentTransactionRepository(), new PayPalService());
         }
 
         [HttpPost]

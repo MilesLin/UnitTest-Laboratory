@@ -1,10 +1,11 @@
-﻿using RestSharp;
+﻿using Lab_MVC.Interfaces.Services;
+using RestSharp;
 using System;
 using System.Configuration;
 
 namespace Lab_MVC.Services
 {
-    public class PayPalService
+    public class PayPalService : IPayPalService
     {
         private string _host;
 
