@@ -8,28 +8,17 @@ namespace Lab_MVC.Services
     {
         private string _host;
 
-        private string Host
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_host))
-                {
-                    _host = ConfigurationManager.AppSettings["APIHost"];
-                }
-                return _host;
-            }
-        }
-
         private RestClient _restClient;
 
         public PayPalService()
         {
             _restClient = new RestClient();
+            _host = ConfigurationManager.AppSettings["APIHost"];
         }
 
         public bool SendInvoice(string merchantPNRef)
         {
-            string endPoint = $@"{this.Host}/invoicing/invoices/{merchantPNRef}/send";
+            string endPoint = $@"{this._host}/invoicing/invoices/{merchantPNRef}/send";
             Uri uri = new Uri(endPoint);
             this._restClient.BaseUrl = uri;
 
