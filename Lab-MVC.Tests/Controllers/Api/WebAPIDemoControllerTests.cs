@@ -1,4 +1,5 @@
 ﻿using Lab_MVC.Models;
+using System;
 using System.Web.Http.Results;
 using Xunit;
 
@@ -139,8 +140,33 @@ namespace Lab_MVC.Controllers.Api.Tests
             var b = result.Location;
 
             // Assert
-            
         }
 
+        [Fact()]
+        public void GetInternalServerErrorTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetInternalServerError() as ExceptionResult;
+            var a = result.Exception;
+
+            // Assert
+            Assert.IsType<ArgumentNullException>(result.Exception);
+        }
+
+        [Fact()]
+        public void GetInternalServerErrorWithNoArgTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetInternalServerErrorWithNoArg();
+
+            // Assert
+            Assert.IsType<InternalServerErrorResult>(result);
+        }
     }
 }

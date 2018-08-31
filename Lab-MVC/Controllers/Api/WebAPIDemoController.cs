@@ -1,4 +1,5 @@
 ﻿using Lab_MVC.Models;
+using System;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
@@ -63,6 +64,16 @@ namespace Lab_MVC.Controllers.Api
         public IHttpActionResult GetCreated()
         {
             return Created("http://api", new Train() { TrainId = 1 });
+        }
+
+        public IHttpActionResult GetInternalServerError()
+        {
+            return InternalServerError(new ArgumentNullException("參數空白"));
+        }
+
+        public IHttpActionResult GetInternalServerErrorWithNoArg()
+        {
+            return InternalServerError();
         }
     }
 }
