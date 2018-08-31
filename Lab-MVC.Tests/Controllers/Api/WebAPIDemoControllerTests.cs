@@ -1,12 +1,6 @@
-﻿using Xunit;
-using Lab_MVC.Controllers.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Lab_MVC.Models;
 using System.Web.Http.Results;
-using Lab_MVC.Models;
+using Xunit;
 
 namespace Lab_MVC.Controllers.Api.Tests
 {
@@ -31,7 +25,7 @@ namespace Lab_MVC.Controllers.Api.Tests
 
         [Fact()]
         public void GetOkWithAnonymousTest()
-        {            
+        {
             // Arrange
             var sut = new WebAPIDemoController();
 
@@ -42,6 +36,66 @@ namespace Lab_MVC.Controllers.Api.Tests
 
             // Assert
             //Assert.Equal(expected, result);
+            //expected.ToExpectedObject().ShouldMatch(result);
+        }
+
+        [Fact()]
+        public void GetOkWithNoArgumentTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetOkWithNoArgument();
+
+            // Assert
+            Assert.IsType<OkResult>(result);
+            //expected.ToExpectedObject().ShouldMatch(result);
+        }
+
+        [Fact()]
+        public void GetBadRequestTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetBadRequest() as BadRequestResult;
+
+            // Assert
+            Assert.IsType<BadRequestResult>(result);
+            //expected.ToExpectedObject().ShouldMatch(result);
+        }
+
+        [Fact()]
+        public void GetBadRequestWithStringMessageTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetBadRequestWithStringMessage() as BadRequestErrorMessageResult;
+            var a = result.Message;
+
+            // Assert
+            Assert.IsType<BadRequestErrorMessageResult>(result);
+            //expected.ToExpectedObject().ShouldMatch(result);
+        }
+
+        [Fact()]
+        public void GetBadRequestWithModelStateTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetBadRequestWithModelState() as InvalidModelStateResult;
+            var b = result.ModelState;
+            var c = b["a"];
+            var d = b["err"];
+            var d1 = d.Errors[0].ErrorMessage;
+            // Assert
+            Assert.IsType<InvalidModelStateResult>(result);
             //expected.ToExpectedObject().ShouldMatch(result);
         }
     }
