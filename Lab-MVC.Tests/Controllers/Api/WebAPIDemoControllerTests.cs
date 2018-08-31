@@ -98,5 +98,18 @@ namespace Lab_MVC.Controllers.Api.Tests
             Assert.IsType<InvalidModelStateResult>(result);
             //expected.ToExpectedObject().ShouldMatch(result);
         }
+
+        [Fact()]
+        public void GetConflictTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetConflict() as ConflictResult;
+
+            // Assert
+            Assert.IsType<ConflictResult>(result);
+        }
     }
 }

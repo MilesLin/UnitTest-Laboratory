@@ -48,5 +48,10 @@ namespace Lab_MVC.Controllers.Api
             dic.AddModelError("err", "hello");
             return BadRequest(dic);
         }
+
+        public IHttpActionResult GetConflict()
+        {
+            return Conflict();
+        }
     }
 }
