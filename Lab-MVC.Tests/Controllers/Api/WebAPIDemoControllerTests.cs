@@ -195,5 +195,18 @@ namespace Lab_MVC.Controllers.Api.Tests
             // Assert
             Assert.IsType<NotFoundResult>(result);
         }
+
+        [Fact()]
+        public void GetRedirectTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetRedirect() as RedirectResult;
+            var a = result.Location;
+
+            // Assert            
+        }
     }
 }

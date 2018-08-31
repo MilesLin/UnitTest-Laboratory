@@ -86,5 +86,10 @@ namespace Lab_MVC.Controllers.Api
             return NotFound();
         }
 
+        public IHttpActionResult GetRedirect()
+        {
+            return Redirect("http://api/home");
+        }
+
     }
 }
