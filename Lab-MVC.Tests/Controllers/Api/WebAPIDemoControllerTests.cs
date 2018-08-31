@@ -237,5 +237,20 @@ namespace Lab_MVC.Controllers.Api.Tests
             // Assert
             Assert.Equal(HttpStatusCode.OK, result.StatusCode);
         }
+
+        [Fact()]
+        public void GetUnauthorizedTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetUnauthorized() as UnauthorizedResult;
+            var a = result.Challenges;
+            // 這段還要研究要測試什麼
+
+            // Assert
+            
+        }
     }
 }

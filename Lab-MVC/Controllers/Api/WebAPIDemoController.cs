@@ -100,5 +100,10 @@ namespace Lab_MVC.Controllers.Api
         {
             return StatusCode(HttpStatusCode.OK);
         }
+
+        public IHttpActionResult GetUnauthorized()
+        {
+            return Unauthorized(new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer"));
+        }
     }
 }
