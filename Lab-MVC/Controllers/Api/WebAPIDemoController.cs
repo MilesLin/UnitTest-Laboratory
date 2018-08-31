@@ -1,4 +1,5 @@
 ﻿using Lab_MVC.Models;
+using System.Net;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 
@@ -52,6 +53,16 @@ namespace Lab_MVC.Controllers.Api
         public IHttpActionResult GetConflict()
         {
             return Conflict();
+        }
+
+        public IHttpActionResult GetContent()
+        {
+            return Content(HttpStatusCode.Forbidden, 1);
+        }
+
+        public IHttpActionResult GetCreated()
+        {
+            return Created("http://api", new Train() { TrainId = 1 });
         }
     }
 }

@@ -111,5 +111,36 @@ namespace Lab_MVC.Controllers.Api.Tests
             // Assert
             Assert.IsType<ConflictResult>(result);
         }
+
+        [Fact()]
+        public void GetContentTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetContent() as NegotiatedContentResult<int>;
+            var a = result.StatusCode;
+            var b = result.Content;
+
+            // Assert
+            Assert.IsType<ConflictResult>(result);
+        }
+
+        [Fact()]
+        public void GetCreatedTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetCreated() as CreatedNegotiatedContentResult<Train>;
+            var a = result.Content;
+            var b = result.Location;
+
+            // Assert
+            
+        }
+
     }
 }
