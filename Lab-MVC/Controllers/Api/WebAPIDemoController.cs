@@ -95,5 +95,10 @@ namespace Lab_MVC.Controllers.Api
         {
             return RedirectToRoute("default", new { id = 1 });
         }
+
+        public IHttpActionResult GetStatusCode()
+        {
+            return StatusCode(HttpStatusCode.OK);
+        }
     }
 }

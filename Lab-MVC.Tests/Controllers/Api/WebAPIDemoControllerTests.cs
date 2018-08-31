@@ -1,5 +1,6 @@
 ﻿using Lab_MVC.Models;
 using System;
+using System.Net;
 using System.Web.Http.Results;
 using Xunit;
 
@@ -206,7 +207,7 @@ namespace Lab_MVC.Controllers.Api.Tests
             var result = sut.GetRedirect() as RedirectResult;
             var a = result.Location;
 
-            // Assert            
+            // Assert
         }
 
         [Fact()]
@@ -220,9 +221,21 @@ namespace Lab_MVC.Controllers.Api.Tests
             var a = result.RouteName;
             var b = result.RouteValues;
             var c = result.RouteValues["id"];
-            
+
             // Assert
         }
 
+        [Fact()]
+        public void GetStatusCodeTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetStatusCode() as StatusCodeResult;
+
+            // Assert
+            Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+        }
     }
 }
