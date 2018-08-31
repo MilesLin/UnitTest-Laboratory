@@ -267,9 +267,28 @@ namespace Lab_MVC.Controllers.Api.Tests
             var a = result.Response.StatusCode;
             
             // Assert
-
         }
 
+        [Fact()]
+        public void GetHttpResponseMessageTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+            sut.Request = new HttpRequestMessage();
+            sut.Configuration = new HttpConfiguration();
+            
+            // Act
+            var result = sut.GetHttpResponseMessage();
+            var a = result.Headers;
+            var b = result.StatusCode;
+            var c = result.Content;
+            var d = result.TryGetContentValue<Train>(out Train train);
+            var e = train.TrainId;
+            
+
+            // Assert
+
+        }
 
     }
 }

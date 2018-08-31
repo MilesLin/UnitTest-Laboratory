@@ -113,5 +113,10 @@ namespace Lab_MVC.Controllers.Api
             return ResponseMessage(res);
         }
 
+        public HttpResponseMessage GetHttpResponseMessage()
+        {
+            var train = new Train() { TrainId = 1 };
+            return Request.CreateResponse(train);
+        }
     }
 }
