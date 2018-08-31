@@ -80,5 +80,11 @@ namespace Lab_MVC.Controllers.Api
         {
             return Json(new Train() { TrainId = 1 });
         }
+
+        public IHttpActionResult GetNotFound()
+        {
+            return NotFound();
+        }
+
     }
 }

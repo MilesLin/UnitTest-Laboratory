@@ -182,5 +182,18 @@ namespace Lab_MVC.Controllers.Api.Tests
 
             // Assert
         }
+
+        [Fact()]
+        public void GetNotFoundTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetNotFound();
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
     }
 }
