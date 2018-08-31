@@ -75,5 +75,10 @@ namespace Lab_MVC.Controllers.Api
         {
             return InternalServerError();
         }
+
+        public IHttpActionResult GetJson()
+        {
+            return Json(new Train() { TrainId = 1 });
+        }
     }
 }

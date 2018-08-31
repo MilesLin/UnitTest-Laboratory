@@ -168,5 +168,19 @@ namespace Lab_MVC.Controllers.Api.Tests
             // Assert
             Assert.IsType<InternalServerErrorResult>(result);
         }
+
+        [Fact()]
+        public void GetJsonTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetJson() as JsonResult<Train>;
+            var a = result.Content;
+            var b = result.Encoding;
+
+            // Assert
+        }
     }
 }
