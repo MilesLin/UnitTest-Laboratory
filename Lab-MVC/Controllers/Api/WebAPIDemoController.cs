@@ -91,5 +91,9 @@ namespace Lab_MVC.Controllers.Api
             return Redirect("http://api/home");
         }
 
+        public IHttpActionResult GetRedirectToRoute()
+        {
+            return RedirectToRoute("default", new { id = 1 });
+        }
     }
 }

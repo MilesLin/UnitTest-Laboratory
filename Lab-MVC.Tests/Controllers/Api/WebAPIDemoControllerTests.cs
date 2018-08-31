@@ -208,5 +208,21 @@ namespace Lab_MVC.Controllers.Api.Tests
 
             // Assert            
         }
+
+        [Fact()]
+        public void GetRedirectToRouteTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+
+            // Act
+            var result = sut.GetRedirectToRoute() as RedirectToRouteResult;
+            var a = result.RouteName;
+            var b = result.RouteValues;
+            var c = result.RouteValues["id"];
+            
+            // Assert
+        }
+
     }
 }
