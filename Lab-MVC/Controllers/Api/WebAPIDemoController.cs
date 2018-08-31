@@ -1,6 +1,7 @@
 ﻿using Lab_MVC.Models;
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 
@@ -105,5 +106,12 @@ namespace Lab_MVC.Controllers.Api
         {
             return Unauthorized(new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer"));
         }
+
+        public IHttpActionResult GetResponseMessage()
+        {
+            var res = Request.CreateResponse(HttpStatusCode.ServiceUnavailable);            
+            return ResponseMessage(res);
+        }
+
     }
 }

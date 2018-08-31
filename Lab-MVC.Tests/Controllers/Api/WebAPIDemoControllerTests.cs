@@ -1,6 +1,8 @@
 ﻿using Lab_MVC.Models;
 using System;
 using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using System.Web.Http.Results;
 using Xunit;
 
@@ -252,5 +254,22 @@ namespace Lab_MVC.Controllers.Api.Tests
             // Assert
             
         }
+
+        [Fact()]
+        public void GetResponseMessageTest()
+        {
+            // Arrange
+            var sut = new WebAPIDemoController();
+            sut.Request = new HttpRequestMessage();            
+
+            // Act
+            var result = sut.GetResponseMessage() as ResponseMessageResult;
+            var a = result.Response.StatusCode;
+            
+            // Assert
+
+        }
+
+
     }
 }
