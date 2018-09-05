@@ -1,8 +1,11 @@
 using Lab_MVC.Interfaces.Repositories;
+using Lab_MVC.Interfaces.Services;
 using Lab_MVC.Repositories;
+using Lab_MVC.Services;
 using System;
 
 using Unity;
+using Unity.Lifetime;
 
 namespace Lab_MVC
 {
@@ -43,7 +46,16 @@ namespace Lab_MVC
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>();
+
+            // 預設，每次都會 New
+            //container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new TransientLifetimeManager());
+            container.RegisterType<IPayPalService, PayPalService>(new TransientLifetimeManager());
+
+            // 同一個生命週期不會重新 new
+            container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new PerResolveLifetimeManager());
+
+            //// Singleton
+            //container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new ContainerControlledLifetimeManager());
         }
     }
 }
