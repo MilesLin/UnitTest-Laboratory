@@ -10,9 +10,12 @@ namespace Lab_MVC.Controllers
     public class HomeController : Controller
     {
         IPaymentTransactionRepository _repo;
-        public HomeController(IPaymentTransactionRepository repo)
+        IPaymentTransactionRepository _repo2;
+        public HomeController(IPaymentTransactionRepository repo,
+            IPaymentTransactionRepository repo2)
         {
             _repo = repo;
+            _repo2 = repo2;
         }
 
         public ActionResult Index()

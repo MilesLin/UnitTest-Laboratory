@@ -6,6 +6,7 @@ using System;
 
 using Unity;
 using Unity.Lifetime;
+using Unity.RegistrationByConvention;
 
 namespace Lab_MVC
 {
@@ -46,13 +47,19 @@ namespace Lab_MVC
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
+            container.RegisterTypes(
+                AllClasses.FromLoadedAssemblies(),
+                WithMappings.FromMatchingInterface,
+                WithName.Default,
+                WithLifetime.PerResolve);
 
             // 預設，每次都會 New
-            //container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new TransientLifetimeManager());
-            container.RegisterType<IPayPalService, PayPalService>(new TransientLifetimeManager());
+            // 後面註冊的會取代前面註冊的
+            container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new TransientLifetimeManager());
+            //container.RegisterType<IPayPalService, PayPalService>(new TransientLifetimeManager());
 
             // 同一個生命週期不會重新 new
-            container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new PerResolveLifetimeManager());
+            //container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new PerResolveLifetimeManager());
 
             //// Singleton
             //container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>(new ContainerControlledLifetimeManager());
