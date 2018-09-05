@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab_MVC.Interfaces.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,12 @@ namespace Lab_MVC.Controllers
 {
     public class HomeController : Controller
     {
+        IPaymentTransactionRepository _repo;
+        public HomeController(IPaymentTransactionRepository repo)
+        {
+            _repo = repo;
+        }
+
         public ActionResult Index()
         {
             return View();

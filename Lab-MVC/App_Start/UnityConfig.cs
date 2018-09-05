@@ -1,3 +1,5 @@
+using Lab_MVC.Interfaces.Repositories;
+using Lab_MVC.Repositories;
 using System;
 
 using Unity;
@@ -41,7 +43,7 @@ namespace Lab_MVC
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IPaymentTransactionRepository, PaymentTransactionRepository>();
         }
     }
 }
