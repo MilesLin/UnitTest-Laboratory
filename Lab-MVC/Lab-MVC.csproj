@@ -202,6 +202,7 @@
     <Compile Include="Controllers\Api\WebAPIDemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MVCDemoController.cs" />
+    <Compile Include="Filters\CustomFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,11 +213,14 @@
     <Compile Include="Models\PaymentTransactionsPayableItemsPayOption.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\Train.cs" />
+    <Compile Include="Models\TrainNameValidationAttribute.cs" />
     <Compile Include="Models\ViewModels\PaymentVM.cs" />
     <Compile Include="Models\WebPayment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\Repositories\IPaymentTransactionRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITrainRepository.cs" />
     <Compile Include="Repositories\PaymentTransactionRepository.cs" />
+    <Compile Include="Repositories\TrainRepository.cs" />
     <Compile Include="Services\Eliminator.cs" />
     <Compile Include="Services\InvoiceService.cs" />
     <Compile Include="Interfaces\Services\IPayPalService.cs" />

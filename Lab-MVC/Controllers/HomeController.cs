@@ -1,12 +1,15 @@
-﻿using Lab_MVC.Interfaces.Repositories;
+﻿using Lab_MVC.Filters;
+using Lab_MVC.Interfaces.Repositories;
+using Lab_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.ModelBinding;
 using System.Web.Mvc;
 
 namespace Lab_MVC.Controllers
-{
+{        
     public class HomeController : Controller
     {
         IPaymentTransactionRepository _repo;
@@ -18,8 +21,13 @@ namespace Lab_MVC.Controllers
             _repo2 = repo2;
         }
 
-        public ActionResult Index()
+        [CustomFilter]
+        public ActionResult Index(Train train)
         {
+            if (ModelState.IsValid)
+            {
+
+            }
             return View();
         }
 
