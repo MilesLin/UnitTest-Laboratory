@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Web.Mvc;
 
 namespace Lab_MVC.Controllers
 {
@@ -48,7 +49,7 @@ namespace Lab_MVC.Controllers
 
             TempData["Inserted"] = $"{train.TrainName} 資料新增成功";
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction<TrainController>(x => x.Index(null));            
         }
     }
 }
