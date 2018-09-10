@@ -8,8 +8,10 @@ namespace Lab_MVC.Models
         [Required]
         public int? TrainId { get; set; }
 
-        [TrainNameValidation]
+        [Required]
         public string TrainName { get; set; }
+
+        public int TrainType { get; set; }
 
         public DateTime? DepartureTime { get; set; }
 

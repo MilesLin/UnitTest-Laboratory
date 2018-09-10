@@ -18,6 +18,7 @@ namespace Lab_MVC.Models
         public virtual DbSet<PaymentTransactionsPayableItem> PaymentTransactionsPayableItems { get; set; }
         public virtual DbSet<PaymentTransactionsPayableItemsPayOption> PaymentTransactionsPayableItemsPayOptions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Train> Train { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
