@@ -112,7 +112,7 @@ namespace Lab_MVC.Controllers.Tests
             expected.ToExpectedObject().ShouldMatch(result.Model);
         }
 
-        private void WireUpTheIQueryableImplementation(IQueryable mockSet, IQueryable data)
+        private void WireUpTheIQueryableImplementation<T>(IQueryable<T> mockSet, IQueryable<T> data) where T: class
         {
             mockSet.Provider.Returns(data.Provider);
             mockSet.Expression.Returns(data.Expression);

@@ -1,8 +1,8 @@
 ﻿using Lab_MVC.Models;
+using Microsoft.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.Web.Mvc;
 
 namespace Lab_MVC.Controllers
 {
@@ -15,7 +15,6 @@ namespace Lab_MVC.Controllers
             _db = db;
         }
 
-        // GET: Train
         public ActionResult Index(string trainName)
         {
             var trains = _db.Train.AsQueryable();
@@ -31,25 +30,25 @@ namespace Lab_MVC.Controllers
         [HttpPost]
         public ActionResult Create(Train train)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                List<SelectListItem> listItem = new List<SelectListItem>()
+                _db.Train.Add(train);
+                _db.SaveChanges();
+
+                TempData["Inserted"] = $"{train.TrainName} 資料新增成功";
+
+                return this.RedirectToAction<TrainController>(x => x.Index(null));
+            }
+
+            List<SelectListItem> listItem = new List<SelectListItem>()
                 {
                     new SelectListItem { Text = "進入廠區", Value = "1" },
                     new SelectListItem { Text = "離開廠區", Value = "0" }
                 };
 
-                ViewBag.TrainTypeList = new SelectList(listItem, "Value", "Text");
+            ViewBag.TrainTypeList = new SelectList(listItem, "Value", "Text");
 
-                return View(train);
-            }
-
-            _db.Train.Add(train);
-            _db.SaveChanges();
-
-            TempData["Inserted"] = $"{train.TrainName} 資料新增成功";
-
-            return this.RedirectToAction<TrainController>(x => x.Index(null));            
+            return View(train);
         }
     }
 }
