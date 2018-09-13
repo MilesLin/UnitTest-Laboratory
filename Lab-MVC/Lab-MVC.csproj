@@ -210,6 +210,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Services\ILog.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\PayflowResultCode.cs" />
     <Compile Include="Models\PaymentTransaction.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\Train.cs" />
     <Compile Include="Models\TrainNameValidationAttribute.cs" />
+    <Compile Include="Models\ViewModels\Invoice.cs" />
     <Compile Include="Models\ViewModels\PaymentVM.cs" />
     <Compile Include="Models\WebPayment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="Repositories\PaymentTransactionRepository.cs" />
     <Compile Include="Repositories\TrainRepository.cs" />
     <Compile Include="Services\Eliminator.cs" />
+    <Compile Include="Interfaces\Services\IInvoiceService.cs" />
     <Compile Include="Services\InvoiceService.cs" />
     <Compile Include="Interfaces\Services\IPayPalService.cs" />
     <Compile Include="Services\PayPalService.cs" />

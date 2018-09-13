@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertionDemo.cs" />
+    <Compile Include="Controllers\Api\InvoiceControllerTests.cs" />
     <Compile Include="Controllers\Api\WebAPIDemoControllerTests.cs" />
     <Compile Include="Controllers\MVCDemoControllerTests.cs" />
     <Compile Include="Controllers\TrainControllerTests.cs" />

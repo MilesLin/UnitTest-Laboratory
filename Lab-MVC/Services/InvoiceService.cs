@@ -1,11 +1,13 @@
 ﻿using Lab_MVC.Interfaces.Repositories;
 using Lab_MVC.Interfaces.Services;
+using Lab_MVC.Models.ViewModels;
 using Lab_MVC.Repositories;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Lab_MVC.Services
 {
-    public class InvoiceService
+    public class InvoiceService : IInvoiceService
     {
         private IPaymentTransactionRepository _paymentTransactionRepository;
         private IPayPalService _payPalService;
@@ -17,6 +19,11 @@ namespace Lab_MVC.Services
         {
             _paymentTransactionRepository = paymentTransactionRepository;
             _payPalService = payPalService;
+        }
+
+        public List<Invoice> GetInvoices(Invoice invoice)
+        {
+            throw new System.NotImplementedException();
         }
 
         public bool SendInvoice(string lastName, string theLastFourDigitalOfCreditCard)
