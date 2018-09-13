@@ -36,5 +36,19 @@ namespace Lab_MVC.Controllers.Api.Tests
             logger.Received(2).Trace(Arg.Any<string>());
             invoices.ToExpectedObject().ShouldMatch(actual);
         }
+
+        [Fact()]
+        public void GetAnonymousTypeTest()
+        {
+            // Arrange            
+            var sut = new InvoiceController(null, null);
+
+            // Act
+            dynamic result = sut.GetAnonymousType();
+
+            // Assert
+            Assert.Equal(1, result.Content.Id);
+            Assert.Equal("Miles", result.Content.Name);
+        }
     }
 }

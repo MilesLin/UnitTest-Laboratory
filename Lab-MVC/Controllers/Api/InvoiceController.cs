@@ -32,6 +32,13 @@ namespace Lab_MVC.Controllers.Api
             return Ok(invoices);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetAnonymousType()
+        {
+            var result = new { Id = 1, Name = "Miles" };
+            return Ok(result);
+        }
+
         [HttpPost]
         public IHttpActionResult PostSendInvoice(string lastName, string theLastFourDigitalOfCreditCard)
         {
