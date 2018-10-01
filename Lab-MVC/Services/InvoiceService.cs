@@ -2,6 +2,9 @@
 using Lab_MVC.Interfaces.Services;
 using Lab_MVC.Models.ViewModels;
 using Lab_MVC.Repositories;
+using Newtonsoft.Json;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,21 +12,47 @@ namespace Lab_MVC.Services
 {
     public class InvoiceService : IInvoiceService
     {
+        private string _host = "https://paypal";
         private IPaymentTransactionRepository _paymentTransactionRepository;
         private IPayPalService _payPalService;
+        private IRestClient _restClient;
 
         public InvoiceService(
             IPaymentTransactionRepository paymentTransactionRepository,
-            IPayPalService payPalService
+            IPayPalService payPalService,
+            IRestClient restClient
             )
         {
             _paymentTransactionRepository = paymentTransactionRepository;
             _payPalService = payPalService;
+            _restClient = restClient;
         }
 
         public List<Invoice> GetInvoices(Invoice invoice)
         {
             throw new System.NotImplementedException();
+        }
+
+        public Invoice CreateInvoice(Invoice invoice)
+        {
+            string endPoint = $@"{this._host}/invoicing/invoices/";
+            Uri uri = new Uri(endPoint);
+            this._restClient.BaseUrl = uri;
+            
+            string invoiceJson = JsonConvert.SerializeObject(invoice);
+            
+            string accessToken = this._payPalService.GetAccessToken("clientID","Secret");
+            
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("authorization", $"{accessToken}");
+            request.AddHeader("content-type", "application/json");
+            request.AddParameter("application/json", invoiceJson, ParameterType.RequestBody);
+            IRestResponse response = this._restClient.Execute(request);
+            
+            var result = JsonConvert.DeserializeObject<Invoice>(response.Content);
+
+            return result;
         }
 
         public bool SendInvoice(string lastName, string theLastFourDigitalOfCreditCard)

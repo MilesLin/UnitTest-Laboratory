@@ -32,6 +32,15 @@ namespace Lab_MVC.Controllers.Api
             return Ok(invoices);
         }
 
+        [HttpPost]
+        [Route("CreateInvoice")]
+        public IHttpActionResult CreateInvoice(Invoice invoice)
+        {
+            var result = this._invoiceService.CreateInvoice(invoice);
+
+            return Ok(result);
+        }
+
         [HttpGet]
         public IHttpActionResult GetAnonymousType()
         {

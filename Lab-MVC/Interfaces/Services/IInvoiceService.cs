@@ -8,5 +8,7 @@ namespace Lab_MVC.Interfaces.Services
         bool SendInvoice(string lastName, string theLastFourDigitalOfCreditCard);
 
         List<Invoice> GetInvoices(Invoice invoice);
+
+        Invoice CreateInvoice(Invoice invoice);
     }
 }

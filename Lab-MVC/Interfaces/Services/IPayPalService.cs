@@ -3,5 +3,6 @@
     public interface IPayPalService
     {
         bool SendInvoice(string merchantPNRef);
+        string GetAccessToken(string clientId, string secret);
     }
 }
