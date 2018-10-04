@@ -21,7 +21,7 @@ namespace Lab_MVC.Controllers.Tests
                 DepartureTime = new DateTime(2018, 10, 1)
             };
 
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetView(trainId) as ViewResult;
@@ -49,7 +49,7 @@ namespace Lab_MVC.Controllers.Tests
                 DepartureTime = new DateTime(2018, 10, 1)
             };
 
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetPartialView(trainId) as PartialViewResult;
@@ -68,7 +68,7 @@ namespace Lab_MVC.Controllers.Tests
         public void GetContentTest()
         {
             // Arrange
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetContent() as ContentResult;
@@ -86,7 +86,7 @@ namespace Lab_MVC.Controllers.Tests
         public void GetFileTest()
         {
             // Arrange
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetContent() as FileResult;
@@ -110,7 +110,7 @@ namespace Lab_MVC.Controllers.Tests
         public void GetJsonTest()
         {
             // Arrange
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetJson() as JsonResult;
@@ -147,7 +147,7 @@ namespace Lab_MVC.Controllers.Tests
         {
             // Arrange
             string expected = "alert('hi')";
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetJavaScript() as JavaScriptResult;
@@ -160,7 +160,7 @@ namespace Lab_MVC.Controllers.Tests
         public void GetRedirectTest()
         {
             // Arrange
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetRedirect() as RedirectResult;
@@ -172,7 +172,7 @@ namespace Lab_MVC.Controllers.Tests
         public void GetRedirectToRouteTest()
         {
             // Arrange
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetRedirectToRoute() as RedirectToRouteResult;
@@ -186,7 +186,7 @@ namespace Lab_MVC.Controllers.Tests
         public void GetRedirectToActionTest()
         {
             // Arrange
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetRedirectToAction() as RedirectToRouteResult;
@@ -201,7 +201,7 @@ namespace Lab_MVC.Controllers.Tests
         public void GetHttpNotFoundTest()
         {
             // Arrange
-            var sut = new MVCDemoController();
+            var sut = new MVCDemoController(null);
 
             // Act
             var actual = sut.GetHttpNotFound() as HttpNotFoundResult;

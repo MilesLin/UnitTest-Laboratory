@@ -34,7 +34,7 @@ namespace Lab_MVC.Services.Tests
                 .SendInvoice(Arg.Is<string>(x => x == expectedMerchantPNRef))
                 .Returns(true);
 
-            var sut = new InvoiceService(paymentTransactionRepository, payPalService);
+            var sut = new InvoiceService(paymentTransactionRepository, payPalService, null);
 
             // Act
             var result = sut.SendInvoice(lastName, theLastFourDigital);
