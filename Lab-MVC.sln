@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab-MVC", "Lab-MVC\Lab-MVC.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab-MVC.Tests", "Lab-MVC.Tests\Lab-MVC.Tests.csproj", "{8C09A3B3-84A1-4CDC-B0A0-DF4D00462D3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobStepAnalysis", "JobStepAnalysis\JobStepAnalysis.csproj", "{24A2F96B-17D5-4289-AF11-91EDDFFA23C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8C09A3B3-84A1-4CDC-B0A0-DF4D00462D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C09A3B3-84A1-4CDC-B0A0-DF4D00462D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C09A3B3-84A1-4CDC-B0A0-DF4D00462D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24A2F96B-17D5-4289-AF11-91EDDFFA23C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24A2F96B-17D5-4289-AF11-91EDDFFA23C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24A2F96B-17D5-4289-AF11-91EDDFFA23C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24A2F96B-17D5-4289-AF11-91EDDFFA23C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
