@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace JobStepAnalysis
 {
-    public class CCSWorkOrderStatusUpdateNotificationAnalysis : IAnalysis
+    public class CCSWorkOrderStatusUpdateNotificationAnalysis: BaseAnalysis, IAnalysis
     {
         private readonly IXMLConvertHelper _XMLConvertHelper;
         private readonly IRailWorkOrderRepository _railWorkOrderRepository;
-        private readonly IJopStepRepository _jopStepRepository;
+        private readonly IJobStepRepository _jobStepRepository;
 
         public CCSWorkOrderStatusUpdateNotificationAnalysis(
             IXMLConvertHelper XMLConvertHelper,
             IRailWorkOrderRepository railWorkOrderRepository,
-            IJopStepRepository jopStepRepository
+            IJobStepRepository jobStepRepository
             )
         {
             this._XMLConvertHelper = XMLConvertHelper;
             this._railWorkOrderRepository = railWorkOrderRepository;
-            this._jopStepRepository = jopStepRepository;
+            this._jobStepRepository = jobStepRepository;
         }
 
         public void AnalysisMessage(string xml, ConcurrentDictionary<int, JobStepInfoDTOModel> currentStepInfo)
@@ -37,29 +37,19 @@ namespace JobStepAnalysis
             {
                 RailMoveType railMoveType = this._railWorkOrderRepository.GetRailMoveType(workOrderId);
 
-                this._jopStepRepository.SetStepInfo(workOrderId, xml, WorkOrderJobStep.Assigned, WorkOrderJobStepStatus.Start);
+                this._jobStepRepository.SetStepInfo(workOrderId, xml, WorkOrderJobStep.Assigned, WorkOrderJobStepStatus.Start);
 
                 this.UpdateCurrentStepInfo(currentStepInfo, workOrderId, craneId, railMoveType);
             }
             else if (ccs.Status == "PICKED")
             {
-                this._jopStepRepository.SetStepInfo(workOrderId, xml, WorkOrderJobStep.Picked, WorkOrderJobStepStatus.End);
+                this._jobStepRepository.SetStepInfo(workOrderId, xml, WorkOrderJobStep.Picked, WorkOrderJobStepStatus.End);
 
-                // 客戶想要 Picked 結束後，直接開始 Moving to target
-                this._jopStepRepository.SetStepInfo(workOrderId, xml, WorkOrderJobStep.MovingToTarget, WorkOrderJobStepStatus.Start);
+                // 客戶要求，收到 Pick 後，要把前面的狀態也設定會結束
+                // Train to Buffer 結束 Requesting RC
+                // Buffer to Buffer 結束 Requesting Res
+                //this._jobStepRepository.SetStepInfo(workOrderId, xml, WorkOrderJobStep.RequestingRCDesk, WorkOrderJobStepStatus.End);
             }
-        }
-
-        private void UpdateCurrentStepInfo(ConcurrentDictionary<int, JobStepInfoDTOModel> stepInfos, int workOrderId, int craneId, RailMoveType moveType)
-        {
-            var newValue = new JobStepInfoDTOModel()
-            {
-                RailWorkOrderId = workOrderId,
-                CraneId = craneId,
-                RailMoveType = moveType
-            };
-
-            stepInfos.AddOrUpdate(craneId, newValue, (key, oldValue) => newValue);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JobStepAnalysis.Repositories
 {
-    public class JopStepRepository : IJopStepRepository
+    public class JobStepRepository : IJobStepRepository
     {
         public void SetStepInfo(int workOrderId, string message, WorkOrderJobStep jobStep, WorkOrderJobStepStatus jopStepStatus)
         {
@@ -15,7 +15,7 @@ namespace JobStepAnalysis.Repositories
         }
     }
 
-    public interface IJopStepRepository
+    public interface IJobStepRepository
     {
         void SetStepInfo(int workOrderId, string message, WorkOrderJobStep jobStep, WorkOrderJobStepStatus jopStepStatus);
     }

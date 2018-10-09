@@ -9,6 +9,6 @@ namespace JobStepAnalysis
 {
     public interface IAnalysis
     {
-        void AnalysisMessage(string xml, ConcurrentDictionary<int, JobStepInfoDTOModel> stepInfos);
+        void AnalysisMessage(string xmlModel, ConcurrentDictionary<int, JobStepInfoDTOModel> currentStepInfo);
     }
 }

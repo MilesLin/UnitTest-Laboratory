@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseAnalysis.cs" />
     <Compile Include="CCSWorkOrderStatusUpdateNotification.cs" />
     <Compile Include="CCSWorkOrderStatusUpdateNotificationAnalysis.cs" />
     <Compile Include="Enums\WorkOrderJobStep.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="JobStepInfoDTOModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enums\RailMoveType.cs" />
-    <Compile Include="Repositories\JopStepRepository.cs" />
+    <Compile Include="Repositories\JobStepRepository.cs" />
     <Compile Include="Repositories\RailWorkOrderRepository.cs" />
     <Compile Include="Enums\WorkOrderJobStepStatus.cs" />
     <Compile Include="XMLConvertHelper.cs" />
