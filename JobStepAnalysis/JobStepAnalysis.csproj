@@ -53,6 +53,7 @@
     <Compile Include="Repositories\JobStepRepository.cs" />
     <Compile Include="Repositories\RailWorkOrderRepository.cs" />
     <Compile Include="Enums\WorkOrderJobStepStatus.cs" />
+    <Compile Include="ROCReportAnalysis.cs" />
     <Compile Include="XMLConvertHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

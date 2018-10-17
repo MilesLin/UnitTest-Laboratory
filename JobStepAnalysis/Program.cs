@@ -14,27 +14,38 @@ namespace JobStepAnalysis
 
         private static void Main(string[] args)
         {
+            // 建立 Comsumer, 去訂閱 Crane 的訊息通知
             var comsumer = new JmsConsumer();
             comsumer.StartConsumer(new JmsParametersDTOModel
             {
                 JmsURI = "10.1.1.1",
                 JmsDestinationName = "Crane",
             });
+            
+            // 收到訊息後會執行的方法
             comsumer.MessageReporter += JmsConsumerOnMessageReporterEvent;
         }
 
         private static void JmsConsumerOnMessageReporterEvent(object sender, OnJmsMessageReporter args)
         {
+            // 取得 XML 訊息
             string xml = args.Message;
             IAnalysis analysis = null;
+
+            // new 處理訊息的實體類別
             switch (args.TagName)
             {
+                case "ROCReport":
+                    analysis = new ROCReportAnalysis(new XMLConvertHelper(), new JobStepRepository());
+                    break;
+
                 case "CCSWorkOrderStatusUpdateNotification":
+                    //
                     analysis = new CCSWorkOrderStatusUpdateNotificationAnalysis(new XMLConvertHelper(), new JobStepRepository());
                     break;
             }
 
-            analysis.AnalysisMessage(xml, _stepInfos);
+            analysis?.AnalysisMessage(xml, _stepInfos);
         }
     }
 
