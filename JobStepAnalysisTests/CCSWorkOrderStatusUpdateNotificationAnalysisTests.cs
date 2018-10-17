@@ -21,10 +21,7 @@ namespace JobStepAnalysis.Tests
 
             string xml = "<?xml>";
             var moveType = RailMoveType.BufferToTrain;
-
-            var railWorkOrderRepository = Substitute.For<IRailWorkOrderRepository>();
-            railWorkOrderRepository.GetRailMoveType(1234).ReturnsForAnyArgs(moveType);
-
+            
             var jobStepRepository = Substitute.For<IJobStepRepository>();
             var converter = Substitute.For<IXMLConvertHelper>();
             converter.Deserialize<CCSWorkOrderStatusUpdateNotification>(xml).
@@ -34,7 +31,6 @@ namespace JobStepAnalysis.Tests
 
             var sut = new CCSWorkOrderStatusUpdateNotificationAnalysis(
                 converter,
-                railWorkOrderRepository,
                 jobStepRepository);
 
             // Act
@@ -48,7 +44,6 @@ namespace JobStepAnalysis.Tests
                 WorkOrderJobStepStatus.Start
             );
             Assert.NotNull(currentStepInfo[1]);
-            Assert.Equal(moveType, currentStepInfo[1].RailMoveType);
             Assert.Equal(1234, currentStepInfo[1].RailWorkOrderId);
             Assert.Equal(1, currentStepInfo[1].CraneId);
         }
@@ -66,8 +61,6 @@ namespace JobStepAnalysis.Tests
 
             string xml = "<?xml>";
 
-            var railWorkOrderRepository = Substitute.For<IRailWorkOrderRepository>();
-
             var jobStepRepository = Substitute.For<IJobStepRepository>();
             var converter = Substitute.For<IXMLConvertHelper>();
             converter.Deserialize<CCSWorkOrderStatusUpdateNotification>(xml).
@@ -77,7 +70,6 @@ namespace JobStepAnalysis.Tests
 
             var sut = new CCSWorkOrderStatusUpdateNotificationAnalysis(
                 converter,
-                railWorkOrderRepository,
                 jobStepRepository);
 
             // Act

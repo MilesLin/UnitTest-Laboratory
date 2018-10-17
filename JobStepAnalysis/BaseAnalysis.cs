@@ -10,13 +10,12 @@ namespace JobStepAnalysis
 {
     public class BaseAnalysis
     {
-        protected void UpdateCurrentStepInfo(ConcurrentDictionary<int, JobStepInfoDTOModel> stepInfos, int workOrderId, int craneId, RailMoveType moveType)
+        protected void UpdateCurrentStepInfo(ConcurrentDictionary<int, JobStepInfoDTOModel> stepInfos, int workOrderId, int craneId)
         {
             var newValue = new JobStepInfoDTOModel()
             {
                 RailWorkOrderId = workOrderId,
-                CraneId = craneId,
-                RailMoveType = moveType
+                CraneId = craneId
             };
 
             stepInfos.AddOrUpdate(craneId, newValue, (key, oldValue) => newValue);

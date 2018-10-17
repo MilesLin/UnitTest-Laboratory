@@ -12,17 +12,14 @@ namespace JobStepAnalysis
     public class CCSWorkOrderStatusUpdateNotificationAnalysis: BaseAnalysis, IAnalysis
     {
         private readonly IXMLConvertHelper _XMLConvertHelper;
-        private readonly IRailWorkOrderRepository _railWorkOrderRepository;
         private readonly IJobStepRepository _jobStepRepository;
 
         public CCSWorkOrderStatusUpdateNotificationAnalysis(
             IXMLConvertHelper XMLConvertHelper,
-            IRailWorkOrderRepository railWorkOrderRepository,
             IJobStepRepository jobStepRepository
             )
         {
             this._XMLConvertHelper = XMLConvertHelper;
-            this._railWorkOrderRepository = railWorkOrderRepository;
             this._jobStepRepository = jobStepRepository;
         }
 
@@ -35,11 +32,9 @@ namespace JobStepAnalysis
 
             if (ccs.Status == "ASSIGNED")
             {
-                RailMoveType railMoveType = this._railWorkOrderRepository.GetRailMoveType(workOrderId);
-
                 this._jobStepRepository.SetStepInfo(workOrderId, xml, WorkOrderJobStep.Assigned, WorkOrderJobStepStatus.Start);
 
-                this.UpdateCurrentStepInfo(currentStepInfo, workOrderId, craneId, railMoveType);
+                this.UpdateCurrentStepInfo(currentStepInfo, workOrderId, craneId);
             }
             else if (ccs.Status == "PICKED")
             {
