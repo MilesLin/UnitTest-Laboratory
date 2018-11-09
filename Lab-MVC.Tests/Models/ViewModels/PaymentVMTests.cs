@@ -18,10 +18,10 @@ namespace Lab_MVC.Models.ViewModels.Tests
 
             // Act
             var validationResults = new List<ValidationResult>();
-            var result = Validator.TryValidateObject(model, new ValidationContext(model), validationResults, validateAllProperties: true);
-
-            //validateAllProperties = true 會驗證 Range，反之不會。
-            //https://stackoverflow.com/questions/5636975/validator-validateobject-with-validateallproperties-to-true-stop-at-first-erro/5637762
+            var result = Validator.TryValidateObject(model, 
+                new ValidationContext(model), 
+                validationResults, 
+                validateAllProperties: true);
 
             //attribute 都通過，才會驗證 Validate 的內容，否則不會驗證 Valiate 的邏輯。
 
