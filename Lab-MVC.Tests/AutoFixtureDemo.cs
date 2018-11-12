@@ -1,4 +1,5 @@
 ﻿using AutoFixture;
+using AutoFixture.Xunit2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,20 +17,19 @@ namespace Lab_MVC.Tests
         {
             var fixture = new Fixture();
 
-            //指定 Name 屬性為 Miles
             var employee = fixture.Build<Employee>()
                 .With(x => x.Name, "Miles")
                 .Create();
         }
 
         [Theory]
-        [InlineData(1,2,false)]
-        [InlineData(2,1,true)]
-        [InlineData(5,5,false)]
-        public void GreaterToTest(int number1, int number2, bool expected)
+        [AutoData]
+        [InlineAutoData(2)]
+        public void GreaterToTest(int number1, int number2)
         {
             // Arrange
             var sut = new Comparer();
+            bool expected = number1 > number2;
 
             // Act
             var actual = sut.GreaterTo(number1, number2);
