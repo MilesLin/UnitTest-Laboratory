@@ -36,6 +36,11 @@ namespace Lab_MVC.Services
             //return response.Content;
         }
 
+        public void Paid(int invoiceId, bool isPaidOff)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool SendInvoice(string merchantPNRef)
         {
             string endPoint = $@"{this._host}/invoicing/invoices/{merchantPNRef}/send";

@@ -122,6 +122,8 @@
   <ItemGroup>
     <Compile Include="AssertionDemo.cs" />
     <Compile Include="AutoFixtureDemo.cs" />
+    <Compile Include="AutoNSubstituteDataAttribute.cs" />
+    <Compile Include="Controllers\Api\InvoiceControllerWituAutoMockingTests.cs" />
     <Compile Include="Controllers\Api\InvoiceControllerTests.cs" />
     <Compile Include="Controllers\Api\WebAPIDemoControllerTests.cs" />
     <Compile Include="Controllers\MVCDemoControllerTests.cs" />
@@ -130,6 +132,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Services\EliminatorTests.cs" />
+    <Compile Include="Services\InvoiceServiceWithAutoMockingTests.cs" />
     <Compile Include="Services\InvoiceServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

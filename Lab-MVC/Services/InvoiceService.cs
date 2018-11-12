@@ -1,5 +1,6 @@
 ﻿using Lab_MVC.Interfaces.Repositories;
 using Lab_MVC.Interfaces.Services;
+using Lab_MVC.Models;
 using Lab_MVC.Models.ViewModels;
 using Lab_MVC.Repositories;
 using Newtonsoft.Json;
@@ -26,6 +27,17 @@ namespace Lab_MVC.Services
             _paymentTransactionRepository = paymentTransactionRepository;
             _payPalService = payPalService;
             _restClient = restClient;
+        }
+
+        public void SetInvoiceAsPaid(int invoiceId, int paidAmount)
+        {
+            PaymentTransaction transaction = this._paymentTransactionRepository.GetTransactionByInvoiceId(invoiceId);
+            bool isPaidOff = false;
+            if (paidAmount >= transaction.Amount)
+            {
+                isPaidOff = true;
+            }
+            this._payPalService.Paid(invoiceId, isPaidOff);
         }
 
         public List<Invoice> GetInvoices(Invoice invoice)

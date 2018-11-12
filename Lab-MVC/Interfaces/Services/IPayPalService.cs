@@ -4,5 +4,6 @@
     {
         bool SendInvoice(string merchantPNRef);
         string GetAccessToken(string clientId, string secret);
+        void Paid(int invoiceId, bool isPaidOff);
     }
 }

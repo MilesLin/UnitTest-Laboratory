@@ -1,7 +1,9 @@
-﻿using Lab_MVC.Interfaces.Repositories;
+﻿using Lab_MVC.Services;
+using Lab_MVC.Interfaces.Repositories;
 using Lab_MVC.Interfaces.Services;
 using Lab_MVC.Models;
 using NSubstitute;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -45,5 +47,29 @@ namespace Lab_MVC.Services.Tests
             payPalService.Received(1).SendInvoice(Arg.Is<string>(x => x == expectedMerchantPNRef));
             Assert.True(result);
         }
+
+        [Fact()]
+        public void SetInvoiceAsPaidTest()
+        {
+            // Arrange
+            var paymentTransactionRepository = Substitute.For<IPaymentTransactionRepository>();
+            paymentTransactionRepository.GetTransactionByInvoiceId(Arg.Any<int>()).Returns(
+                new PaymentTransaction()
+                {
+                    Amount = 300
+                });
+            var payPalService = Substitute.For<IPayPalService>();
+            var sut = new InvoiceService(paymentTransactionRepository, payPalService, null);
+
+            int invoiceId = 123;
+            int paidAmount = 300;
+
+            // Act
+            sut.SetInvoiceAsPaid(invoiceId, paidAmount);
+
+            // Assert
+            payPalService.Received().Paid(invoiceId, true);
+        }
+
     }
 }

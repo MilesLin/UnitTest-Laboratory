@@ -21,5 +21,10 @@ namespace Lab_MVC.Repositories
 
             return paymentTransactions;
         }
+
+        public PaymentTransaction GetTransactionByInvoiceId(int invoiceId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ExpectedObjects;
+﻿using Lab_MVC.Controllers.Api;
+using ExpectedObjects;
 using Lab_MVC.Interfaces.Services;
 using Lab_MVC.Models.ViewModels;
 using NSubstitute;
@@ -49,6 +50,27 @@ namespace Lab_MVC.Controllers.Api.Tests
             // Assert
             Assert.Equal(1, result.Content.Id);
             Assert.Equal("Miles", result.Content.Name);
+        }
+
+        [Fact()]
+        public void CreateInvoiceTest()
+        {
+            // Arrange
+            var invoice = new Invoice() { CardNumber = "1234" };
+            var expected = invoice;
+            var invoiceService = Substitute.For<IInvoiceService>();
+            invoiceService.CreateInvoice(Arg.Any<Invoice>()).Returns(invoice);
+
+            var logger = Substitute.For<ILog>();
+
+            var sut = new InvoiceController(invoiceService, logger);
+
+            // Act
+            var result = sut.CreateInvoice(invoice) as OkNegotiatedContentResult<Invoice>;
+            var actual = result.Content;
+
+            // Assert
+            expected.ToExpectedObject().ShouldMatch(actual);
         }
     }
 }
