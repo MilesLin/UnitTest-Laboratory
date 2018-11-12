@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertionDemo.cs" />
+    <Compile Include="AutoFixtureDemo.cs" />
     <Compile Include="Controllers\Api\InvoiceControllerTests.cs" />
     <Compile Include="Controllers\Api\WebAPIDemoControllerTests.cs" />
     <Compile Include="Controllers\MVCDemoControllerTests.cs" />
