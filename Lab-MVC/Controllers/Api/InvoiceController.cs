@@ -21,11 +21,11 @@ namespace Lab_MVC.Controllers.Api
         }
 
         [HttpGet]
-        public IHttpActionResult GetInvoices(Invoice filter)
+        public IHttpActionResult GetInvoices(Invoice condition)
         {
-            this._logger.Trace($"{nameof(GetInvoices)}.GetInvoices: {JsonConvert.SerializeObject(filter)}");
+            this._logger.Trace($"{nameof(GetInvoices)}.GetInvoices: {JsonConvert.SerializeObject(condition)}");
 
-            var invoices = this._invoiceService.GetInvoices(filter);
+            var invoices = this._invoiceService.GetInvoices(condition);
 
             this._logger.Trace($"{nameof(GetInvoices)}.GetInvoices: {JsonConvert.SerializeObject(invoices)}");
 

@@ -26,10 +26,10 @@ namespace Lab_MVC.Controllers.Api.Tests
 
             var sut = new InvoiceController(invoiceService, logger);
 
-            var filter = new Invoice() { CardNumber = "1234" };
+            var condition = new Invoice() { CardNumber = "1234" };
 
             // Act
-            var result = sut.GetInvoices(filter) as OkNegotiatedContentResult<List<Invoice>>;
+            var result = sut.GetInvoices(condition) as OkNegotiatedContentResult<List<Invoice>>;
             var actual = result.Content;
 
             // Assert
